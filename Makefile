@@ -1,28 +1,14 @@
-.PHONY: deps skiptest tempo eunit test doc clean distclean
+PROJECT = tempo
 
-REBAR=rebar
+ERLC_OPTS = +debug_info +warn_export_all +warn_export_vars +warn_shadow_vars +warn_obsolete_guard
 
-all: tempo eunit
+PLT_APPS = hipe sasl mnesia crypto compiler syntax_tools
+DIALYZER_OPTS = -Werror_handling -Wrace_conditions -Wunmatched_returns | fgrep -v -f ./dialyzer.ignore-warning
 
-skip_test: tempo
+DEPS_DIR = ../../deps
+DEPS = edown proper
 
-deps:
-	$(REBAR) get-deps
+dep_edown = https://github.com/goldensurfer/edown 1.2
+dep_proper = https://github.com/goldensurfer/proper 1.2
 
-tempo: deps
-	$(REBAR) compile
-
-eunit: tempo
-	$(REBAR) eunit skip_deps=true
-
-test: eunit
-
-doc: tempo
-	$(REBAR) doc skip_deps=true
-
-clean:
-	$(REBAR) clean
-	rm -rf priv ebin
-
-distclean: clean
-	rm -rf deps
+include erlang.mk
