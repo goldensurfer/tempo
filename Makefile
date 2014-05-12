@@ -16,6 +16,6 @@ my_all: priv all
 include erlang.mk
 
 priv:
-	export ERL_PATH=`erlang_path.escript`
+	export ERL_PATH=`./erlang_path.escript`
 	mkdir -p priv
 	gcc -fPIC -shared -o priv/tempo_drv.so c_src/tempo.c -I $(ERL_PATH)
