@@ -5,7 +5,7 @@ ERLC_OPTS = +debug_info +warn_export_all +warn_export_vars +warn_shadow_vars +wa
 PLT_APPS = hipe sasl mnesia crypto compiler syntax_tools
 DIALYZER_OPTS = -Werror_handling -Wrace_conditions -Wunmatched_returns | fgrep -v -f ./dialyzer.ignore-warning
 
-DEPS_DIR = ../../deps
+DEPS_DIR = deps
 DEPS = edown proper
 
 dep_edown = https://github.com/goldensurfer/edown 1.2
