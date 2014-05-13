@@ -11,11 +11,11 @@ DEPS = edown proper
 dep_edown = https://github.com/goldensurfer/edown 1.2
 dep_proper = https://github.com/goldensurfer/proper 1.2
 
-my_all: priv all
+my_all: priv/tempo_drv.so all
 
 include erlang.mk
 
-priv:
+priv/tempo_drv.so:
 	export ERL_PATH=`./erlang_path.escript`
 	mkdir -p priv
 	gcc -fPIC -shared -o priv/tempo_drv.so c_src/tempo.c -I $(ERL_PATH)
